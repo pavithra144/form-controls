@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <script>
+        function _displayName(){
+            var x = document.createElement("P");
+            var x1 = document.getElementById('_fname').value;
+            var y1 = document.getElementById('_lname').value;
+            var txt =  document.createTextNode(x1+" "+y1);
+            x.appendChild(txt);
+            document.body.appendChild(x); 
+            var form = document.getElementById('myform'); 
+            form.reset()     ;
+        }
+    </script>
+</head>
+<body>
+    <form id="myform">
+   <label >First Name</label> <input type="text" id="_fname" /><br/><br/>
+   <label >Last Name</label><input type="text" id="_lname" /><br/></br>
+   <input type = "button" value ="Submit"  onclick="_displayName()"/></form></br>
+    </form>
+    
+</body>
+</html>

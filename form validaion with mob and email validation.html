@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script type="text/javascript">
+        function myFunc() {        
+            var nameField = document.getElementById("name").value;
+            var emailField = document.getElementById("emails").value;
+            var gender = document.querySelectorAll('input[name="gender"]');
+            var selectedGender;
+            for(const rb of gender){
+                if(rb.checked){
+                    selectedGender = rb.value;                    
+                    break;
+                }
+            }            
+            var nationality = document.getElementById("nation");
+            var nationalityValue = nationality.options[nationality.selectedIndex].value;            
+            var skills = document.querySelectorAll('input[name="skill"]');
+            var skillValue="";
+            for(const skill of skills){
+                if(skill.checked){
+                    skillValue +=  skill.value + " "; 
+                }
+            }
+			var mobNum = document.getElementById("conNum").value;
+            var filUpload = document.getElementById("myFile").value;
+            var tANDc = document.querySelectorAll('input[name="conditions"]');
+            var tANDcVal ;
+            for(const r of tANDc ){
+                if(r.checked){
+                    tANDcVal = r.value;
+                }
+            }
+			
+            var err =0;
+            var nErr = false;
+            var eErr = false;
+            var gErr = false;
+            var naErr= false;
+            var sErr = false;
+            var cErr = false;
+            var fErr = false;
+            var tANDcErr = false;
+
+            if(nameField.length == 0 ){                
+                document.getElementById("NMError").className = "errorDisplay";  
+		                nErr = true;                                
+            }
+            var regexp = emailField.search(/^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/);
+            if(emailField == "" || regexp == -1 ){
+				 document.getElementById("EmailError").className = "errorDisplay";  
+                eErr = true;                                
+            }
+            
+            console.log(emailField);
+            
+            if(selectedGender == null){
+                document.getElementById("GenderError").className="errorDisplay";
+                gErr = true;
+            }
+
+            if(nationalityValue == 0){
+                document.getElementById("NationError").className="errorDisplay";
+                naErr = true;
+            }
+
+            if(skillValue.length == 0){
+                document.getElementById("skillError").className = "errorDisplay"; 
+                sErr = true; 
+            }
+             var conRegexValue = /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/;
+             var conRegexResult = conRegexValue.test(mobNum);
+			if( conRegexResult == "" || conRegexResult == null){
+                document.getElementById("conNumError").className= "errorDisplay";
+            	cErr = true;
+				}
+			console.log(conRegexResult);
+
+            if(filUpload.length == 0){
+                document.getElementById("fileError").className = "errorDisplay";
+                fErr = true;
+            }
+
+            if(tANDcVal == null){
+                document.getElementById("T&CError").className = "errorDisplay";
+                tANDcErr = true;
+            }
+
+
+            if(nErr == true || eErr == true || gErr == true || naErr == true || sErr == true || cErr == true|| fErr == true|| tANDcErr == true){
+		                return false;
+				
+            }
+
+            if (nErr === false || eErr ===false || gErr ===false || naErr === false || sErr === false || cErr === false || fErr === false || tANDcErr === false) {
+              document.write("<h1> Form submitted successfully </h1>");
+                         }
+
+            debugger;
+            
+            
+
+
+        }
+
+    </script>
+    <style type="text/CSS">       
+        body{
+            margin: 0 auto  ;
+            width: 50%;
+        } 
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td{
+            padding: 8px;
+        }  
+        .error{
+            display: none;
+        }   
+        .errorDisplay{
+            display: block;
+            color: red;
+        }          
+        </style>
+</head>
+
+<body>    
+        <h2> Applicant Details</h2>
+        <div>
+            <table>
+                <tr>
+                    <td><label>Full Name </label></td>
+                    <td><input type="text" name="fullName" id="name" /></td>
+                </tr>
+                <tr>
+                    <td><span id="NMError" class="error">Full Name filed cannot be empty</span></td>
+                </tr>
+                <tr>
+                    <td><label>Email</label></td>
+                    <td><input type="text" name="email" id="emails" /></td>
+                </tr>
+                <tr>
+                    <td><span id="EmailError" class="error">Email filed cannot be empty</span></td>
+                </tr>
+                <tr>
+                    <td><label>Gender</label></td>
+                    <td>
+                        <input type="radio" name="gender"  value="Female"> 
+                        <label for="Female">Female</label>
+                        <input type="radio" name="gender" value="Male"> 
+                        <label for="Male">Male</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span id ="GenderError" class="error">Select your Gender</span></td>
+                </tr>
+                <tr>
+                    <td><label> Nationality</label></td>
+                    <td>
+                        <select name="dropdown" id="nation">
+                            <option disabled selected value="0">-- Choose an Option --</option>
+                            <option value="Indian">Indian</option>
+                            <option value="Canadian">Canadian</option>
+                            <option value="American">American</option>
+                            <option value="others">Others</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span id="NationError" class="error">Select your Nationality</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Skills</label>
+                    </td>
+                    <td>
+                        <input type="checkbox" name="skill" value="ASP.NET"> ASP .net
+                        <input type="checkbox" name="skill" value="HTML"> HTML
+                        <input type="checkbox" name="skill" value="JavaScript"> Javascript
+                        <input type="checkbox" name="skill" value="CSS"> CSS
+                    </td>
+                </tr>
+                <tr>
+                    <td><span id="skillError"class="error">Select your skill</span></td>
+                </tr>
+				<tr>
+				    <td>
+                        <label>Contact Number</label>
+				    </td>                        
+                        <td>
+                        <input type="text" name="conNumber" id="conNum" />
+                        </td>
+				</tr>
+                <tr>
+                     <td><span id="conNumError" class="error"> Enter your Contact number </span> </td>
+            	</tr>				 
+						
+				
+                <tr>
+                    <td>
+                        <label>Upload Resume</label>
+                    </td>
+                    <td>
+                        <input type="file" name="fileupload" id="myFile"accept="PDF/*" />
+                    </td>
+                </tr>
+                <tr>
+                    <td><span id="fileError" class="error">Select a file to Upload</span></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" name="conditions" value="on">I agree to terms and conditions <br> <br>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span id="T&CError" class="error">Accept Terms and Conditions to submit your Details</span></td>
+                </tr>
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <button type="submit" name="submit" value="Submit" id="submit" onclick="myFunc()"> Submit</button>  						
+                        <!-- <button type="reset" name="reset" value="Reset" id="reset"> Reset</button> -->
+                    </td>
+                </tr>
+            </table>
+        </div>        
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#spacing {
+padding: 10px;
+
+}
+#submit {
+    padding-left: 10px;
+}
+#reset {
+    padding-left: 10px;
+    margin-left: 10px;
+}
+#styling {
+    margin-right: 10px;
+}    
+.error {
+  padding-top: 8px;
+  color: red;
+  display:block }
+.error:first-letter {
+  text-transform: uppercase}
+    </style>
+</head>
+<body>
+    <form id="spacing" name="student">
+    <h2> Application form</h2>
+    <!-- <div id="styling">  -->    
+   Full Name   <input type="text" name="fullName" id="name" /> <br><br>
+   Email       <input type="text" name="email"  id="emails"/> <br><br>  
+   Gender      <input type="radio" name="female" value="on" > Female 
+               <input type="radio" name="male" value="on" > Male <br> <br>
+Nationality    <select name="dropdown" id="nation">
+               <option disabled selected value="0">-- Choose an Option --</option>
+               <option value="Indian" >Indian</option>
+               <option value="others" >Others</option>  
+</select> <br> <br>
+Skills         <input type="checkbox" name="skill" > ASP .net 
+               <input type="checkbox" name="skill2" > HTML
+               <input type="checkbox" name="skill3" > Javascript
+               <input type="checkbox" name="skill4" > CSS <br> <br>
+Upload Resume  <input type="file" name="fileupload" accept="PDF/*" /> <br><br>
+               <input type="radio" name="conditions" value="on">I agree to terms and conditions <br> <br>
+               <button type="submit" name="submit" value="Submit" id="submit" onclick="myFunc()"> Submit  </button>
+               <button type="reset" name="reset"  value="Reset" id="reset"> Reset            
+      </button>
+      <p id="demo"> </p>
+    <!-- </div>                  -->
+</form>
+<script>
+    function myFunc() {  
+if (formInputValidation ()){
+    document.getElementsById("spacing").submit();
+  } 
+//reset
+document.getElementById("spacing").reset();  
+  
+    }
+     //form input validation
+
+    function formInputValidation () {
+var nameField = document.getElementById("name").value;
+var emailField = document.getElementById("emails").value;
+// var fileField = document.getElementsByName("fileupload").value;
+ //var nationalityField = document.getElementById("nation").value;
+//  for(var i = 0 ; i < nationalityField.length; i++) {
+// var nation = nationalityField[i];
+// if (nation.selected){
+//   alert (nation.value);
+// }
+
+ 
+if(nameField === "" || emailField === "" ) {
+
+    
+ alert("PLease enter the mandatory fields")
+    // return false;       
+}
+else {
+alert("form submitted successfully");
+}
+    
+
+    }
+
+</script>
+</body>
+</html>

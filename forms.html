@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+#spacing {
+padding: 10px;
+
+}
+#submit {
+    padding-left: 10px;
+}
+#reset {
+    padding-left: 10px;
+    margin-left: 10px;
+}
+#styling {
+    margin-right: 10px;
+}    
+#name, #emails {
+  padding-top: 8px;
+  color: red;
+  display:block }
+.error:first-letter {
+  text-transform: uppercase}
+    </style>
+</head>
+<body>
+    <form id="appForm" name="candidate" onsubmit="return validateForm()">
+    <h2> Application form</h2>
+    <!-- <div id="styling">  -->
+   Full Name   <input type="text" name="fullName" id="name" />                          
+   Email       <input type="text" name="email"  id="emails"/> 
+   Gender      <input type="radio" name="female" value="on" > Female 
+               <input type="radio" name="male" value="on" > Male <br> <br>
+   Nationality    <select name="dropdown" id="nation">
+               <option disabled selected value="0">-- Choose an Option --</option>
+               <option value="Indian" >Indian</option>
+               <option value="others" >Others</option>  
+</select> <br> <br>
+    Skills         <input type="checkbox" name="skill" > ASP .net 
+               <input type="checkbox" name="skill" > HTML
+               <input type="checkbox" name="skill" > Javascript
+               <input type="checkbox" name="skill" > CSS <br> <br>
+    Upload Resume  <input type="file" name="fileupload" accept="PDF/*" /> <br><br>
+               <input type="radio" name="conditions" value="on">I agree to terms and conditions <br> <br>
+               <button type="submit" name="submit" value="Submit" id="submit"> Submit  </button>
+               <button type="reset" name="reset"  value="Reset" id="reset"> Reset  </button>
+      <p id="demo"> </p>
+    <!-- </div>                  -->
+</form>
+<script>
+    //validate form
+    function validateForm() {
+  var names = ['name', 'email'];
+  var errorCount = 0;
+  names.forEach(function(el) {
+    var val = document.forms["student_reg"][el].value;
+    if (val == null || val == "") {
+      document.getElementById(el + '_error').textContent = el.toUpperCase().replace('_', ' ') + " must be filled out";
+      ++errorCount;
+    }
+  });
+  if (errorCount) return false;
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
